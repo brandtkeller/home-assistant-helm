@@ -1,0 +1,16 @@
+{{- if .Values.zwavejs.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: zwave
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+    - name: websocket
+      port: 3000
+      targetPort: websocket
+  selector:
+    name: zwave
+{{- end }}
