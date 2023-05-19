@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: ghcr.io/home-assistant/home-assistant
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -105,6 +105,37 @@ affinity: {}
 
 zwavejs:
   enabled: false
+
+  image:
+    repository: zwavejs/zwave-js-ui
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: 8.16.1
+
+  usb:
+    # Do not use /dev/ttyUSBX serial devices, as those mappings can change over time.
+    # Instead, use the /dev/serial/by-id/X serial device for your Z-Wave stick.
+    path: /dev/serial/by-id/insert_stick_reference_here
+
+  # the name of your cluster node that the zwave usb stick in
+  nodeSelector: {}
+
+  persistence:
+    enabled: false
+    ## code-server data Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    # storageClass: "-"
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    annotations:
+      "helm.sh/resource-policy": keep
+    # existingClaim: ""
+    # hostPath: /data
 
 # -- Enable and configure mariadb database subchart under this key.
 #    For more options see [mariadb chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
