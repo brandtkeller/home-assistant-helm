@@ -47,13 +47,13 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-          - name: config
-            mountPath: /config
-      volumes:
-      - name: config
-        configmap:
-          name: {{ include "chart.fullname" . }}-config
+      #     volumeMounts:
+      #     - name: config
+      #       mountPath: /config
+      # volumes:
+      # - name: config
+      #   configmap:
+      #     name: {{ include "chart.fullname" . }}-config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
