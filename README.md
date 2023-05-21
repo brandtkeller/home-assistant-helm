@@ -6,8 +6,11 @@ Home Assistant
 
 ## Requirements
 
-
 ## Dependencies
 
 ## Try it out
 
+## TODO
+- support for configuration files in configmap
+    - can you name a file with a sub-directory included? ie `test/config.yaml` and have it created via configmap volume mount as expected?
+- support for dynamic environment variables
