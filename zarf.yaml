@@ -1,0 +1,16 @@
+kind: ZarfPackageConfig
+metadata:
+  name: home-assistant
+  description: "Packages the helm chart from local files"
+  version: 0.0.1
+components:
+  - name: home-assistant
+    required: true
+    charts:
+      - name: home-assistant
+        localPath: chart
+        namespace: home-assistant
+        version: 0.1.0
+    images:
+      - ghcr.io/home-assistant/home-assistant:2023.5.3
+      - zwavejs/zwave-js-ui:8.16.1
