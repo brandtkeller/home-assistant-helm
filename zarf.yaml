@@ -4,7 +4,7 @@ metadata:
   description: "Packages the helm chart from local files"
   version: 0.0.1
 components:
-  - name: home-assistant
+  - name: home-assistant-vanilla
     required: true
     charts:
       - name: home-assistant
@@ -13,4 +13,4 @@ components:
         version: 0.1.0
     images:
       - ghcr.io/home-assistant/home-assistant:2023.5.3
-      - zwavejs/zwave-js-ui:8.16.1
+      - zwavejs/zwave-js-ui:8.17.1
