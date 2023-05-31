@@ -10,7 +10,7 @@ components:
       - name: home-assistant
         localPath: chart
         namespace: home-assistant
-        version: 0.1.0
+        version: 0.1.3
     images:
       - ghcr.io/home-assistant/home-assistant:2023.5.3
       - zwavejs/zwave-js-ui:8.17.1
