@@ -54,6 +54,13 @@ spec:
           volumeMounts:
           - name: data
             mountPath: /config
+          {{- if .Values.config }}
+          {{- range $config := .Values.config }}
+          - name: config
+            subPath: {{$config.name}}
+            mountPath: {{$config.path}}/{{$config.name}}
+          {{- end -}}
+          {{- end }}
       volumes:
       {{- if .Values.persistence.enabled }}
       - name: data
@@ -62,6 +69,14 @@ spec:
       {{- else }}
       - name: data
         emptyDir: {}
+      {{- end }}
+      {{- if .Values.config }}
+      - name: config
+        configMap:
+          name: {{ include "chart.fullname" . }}-config
+          items:
+          - key: configuration.yaml
+            path: configuration.yaml
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

@@ -1,3 +1,4 @@
+{{- if .Values.config }}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -7,7 +8,8 @@ metadata:
     release: {{ .Release.Name | quote }}
     chart: "{{ .Chart.Name }}"
 data:
-{{- range $path, $config := .Values.config }}
-  {{ $path }}: |
-{{ $config | indent 4 -}}
+{{- range $config := .Values.config }}
+  {{ $config.name }}: |
+{{ $config.content | indent 4 -}}
+{{- end -}}
 {{- end -}}
