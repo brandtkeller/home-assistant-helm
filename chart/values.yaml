@@ -15,7 +15,7 @@ config:
 - name: configuration.yaml
   path: /config
   content: |
-    test: test
+    test: test1
   # configuration.yaml: |
   #   homeassistant:
   #     otherinformationhere
