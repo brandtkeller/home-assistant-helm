@@ -11,14 +11,12 @@ image:
   tag: ""
 
 # Does not do anything currently
-config: 
-- name: configuration.yaml
-  path: /config
-  content: |
-    test: test1
-  # configuration.yaml: |
-  #   homeassistant:
-  #     otherinformationhere
+config: []
+# - name: configuration.yaml
+#   path: /config
+#   content: |
+#     homeassistant:
+#       otherinformationhere
 
 imagePullSecrets: []
 nameOverride: ""

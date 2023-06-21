@@ -29,10 +29,3 @@ cd home-assistant-helm
 
 helm upgrade -i home-assistant -n ha --create-namespace ./chart/
 ```
-
-## TODO
-- support for configuration files in configmap
-    - configmap vs persistence 
-    - The default execution includes a lot of files that would be better secured via persistence
-    - can you name a file with a sub-directory included? ie `test/config.yaml` and have it created via configmap volume mount as expected?
-- support for dynamic environment variables
