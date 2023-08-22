@@ -1,8 +1,7 @@
-{{- if .Values.zwavejs.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "chart.fullname" . }}-zwave
+  name: {{ include "zwave-js-ui.fullname" . }}-zwave
 spec:
   replicas: 1
   strategy:
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
       - name: zwave
-        image: "{{ .Values.zwavejs.image.repository }}:{{ .Values.zwavejs.image.tag }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         env:
         - name: SESSION_SECRET
           value: "mysupersecretkey"
@@ -67,19 +66,18 @@ spec:
       # - name: config <-- if putting your settings.json in a secret
       #   secret:
       #     defaultMode: 420
-      #     secretName: {{ include "chart.fullname" . }}-zwave-settings
+      #     secretName: {{ include "zwave-js-ui.fullname" . }}-zwave-settings
       - name: zwavestick
         hostPath:
           # Do not use /dev/ttyUSBX serial devices, as those mappings can change over time.
           # Instead, use the /dev/serial/by-id/X serial device for your Z-Wave stick.
-          path: {{ .Values.zwavejs.usb.path }}
+          path: {{ .Values.usb.path }}
           type: CharDevice
-      {{- if .Values.zwavejs.persistence.enabled }}
+      {{- if .Values.persistence.enabled }}
       - name: data
         persistentVolumeClaim:
-          claimName: {{ include "chart.fullname" . }}-zwavejs
+          claimName: {{ include "zwave-js-ui.fullname" . }}-zwavejs
       {{- else }}
       - name: data
         emptyDir: {}
       {{- end }}
-{{- end }}
