@@ -4,6 +4,8 @@ Home Assistant
 
 **This chart is not maintained by the upstream project and any issues with the chart should be raised [here](https://github.com/brandtkeller/home-assistant-helm/issues/new/choose)**
 
+Using this repository as a location to house helm charts that I use for my deployments of Home Assistant and various services that integrate with Home Assistant.
+
 ## Requirements
 Home Assistant and zwave-js-ui do not allow declarative management as I have yet to find. When deploying a vanilla configuration there are some manual setup tasks currently.
 
@@ -25,7 +27,7 @@ http:
 ```
 git clone https://github.com/brandtkeller/home-assistant-helm.git
 
-cd home-assistant-helm
+cd home-assitant-helm/charts/home-assistant
 
 helm upgrade -i home-assistant -n ha --create-namespace ./chart/
 ```
