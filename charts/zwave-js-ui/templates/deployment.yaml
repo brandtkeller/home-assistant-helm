@@ -84,7 +84,7 @@ spec:
       {{- if .Values.persistence.enabled }}
       - name: data
         persistentVolumeClaim:
-          claimName: {{ include "zwave-js-ui.fullname" . }}-zwavejs
+          claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ include "zwave-js-ui.fullname" . }}-zwavejs{{- end }}
       {{- else }}
       - name: data
         emptyDir: {}
